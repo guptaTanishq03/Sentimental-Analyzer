@@ -5,12 +5,12 @@ import httpx
 from database import get_connection, init_db
 from models import inputMessage, outputMessage
 
-ML_SERVICE_URL = "https://sentimental-rlvx.onrender.com/classify"
+ml_url = "https://sentimental-rlvx.onrender.com/classify"
 
 def analyze_sentiment(text: str) -> str:
     try:
         response = httpx.post(
-            ML_SERVICE_URL,
+            ml_url,
             json={"message": text}, 
             timeout=5.0
         )
@@ -22,7 +22,6 @@ def analyze_sentiment(text: str) -> str:
     
 
 app = FastAPI()
-
 init_db()
 
 app.add_middleware(
