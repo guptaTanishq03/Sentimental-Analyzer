@@ -10,20 +10,29 @@ A sentiment analysis frontend that lets users type a message and see it classifi
 
 ### Backend (FastAPI + PostgreSQL)
 
-The frontend needs the backend to be running on `http://localhost:8000`.
+The frontend needs the backend running on `http://localhost:8000`.
 
+**Option 1 — Docker (recommended)**
+```bash
+# Build the image (first time only)
+docker build -t sentimental-backend .
+
+# Run the container
+docker run -p 8000:8000 -e database_url="postgresql://user:pass@host/db" sentimental-backend
+```
+
+**Option 2 — Local Python**
 ```bash
 # Terminal 1
 cd backend
-python -m venv venv
 
-# If you have Python 3.13 or newer, use psycopg v3:
+# If you have Python 3.13 or newer:
 pip install fastapi uvicorn psycopg psycopg-binary python-dotenv httpx
 
-# If you have Python 3.12 or older, the requirements.txt works directly:
+# If you have Python 3.12 or older:
 pip install -r requirements.txt
 
-# Set your database URL in .env
+# Set your database URL in a .env file:
 # database_url=postgresql://user:pass@host/db
 
 # Start server
@@ -31,7 +40,6 @@ uvicorn main:app --reload --port 8000
 ```
 
 ### Frontend
-
 ```bash
 # Terminal 2
 cd frontend
@@ -39,8 +47,6 @@ python -m http.server 5500
 ```
 
 Open **http://localhost:5500** in your browser.
-
----
 
 ## How It Works
 
