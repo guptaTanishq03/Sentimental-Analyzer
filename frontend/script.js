@@ -70,7 +70,7 @@ async function loadMessages() {
   try {
     const res = await fetch("http://127.0.0.1:8000/messages");
     const messages = await res.json();
-    messages.forEach(addCard);
+    messages.reverse().forEach(addCard);
   } catch (err) {
     console.log('Backend not running yet:', err);
   }
